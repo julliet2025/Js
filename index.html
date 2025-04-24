@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julliet's Makeup Shop</title>
+    <style>
+        :root {
+            --primary-color: #FF69B4; /* Pink */
+            --secondary-color: #FFC0CB; /* Light Pink */
+            --background-color: #FAF0E6; /* Antique White */
+            --text-color: #8B008B; /* Dark Magenta */
+        }
+
+        body.dark-theme {
+            --primary-color: #800080; /* Purple */
+            --secondary-color: #4B0082; /* Dark Orchid */
+            --background-color: #2b2b2b;
+            --text-color: #e5e5e5;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+            display: flex; /* Use flexbox for header layout */
+            justify-content: space-between; /* Distribute space between logo and button */
+            align-items: center; /* Vertically align items */
+        }
+
+        #header-logo {
+            margin-left: 20px; /* Add some margin to the left */
+        }
+
+        #main-header-img {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0 0 0 20px; /* Add margin to the right of h1 */
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .makeup-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .makeup-item img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+
+        .makeup-item p {
+            margin: 0;
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 20px; /* Add margin to the right of button */
+        }
+
+        .button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #thankYouMessage {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .makeup-item {
+                flex-direction: column;
+                align-items: center;
+            }
+            .makeup-item img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            header {
+                flex-direction: column; /* Stack logo and button vertically on smaller screens */
+                align-items: center;
+            }
+            #header-logo {
+                margin-bottom: 10px;
+            }
+            #main-header-img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="header-logo">
+            <img id="main-header-img" src="prof1.jpg" alt="Juliet Makeup Logo">
+        </div>
+        <div>
+            <h1>Julliet's Makeup Shop</h1>
+            <button class="button" onclick="toggleTheme()">Switch Theme</button>
+        </div>
+    </header>
+    <section id="welcome" class="content">
+        <h2>Welcome to Juliet Makeup!</h2>
+        <p>Enhance your natural beauty with our exquisite range of makeup products. We use high-quality ingredients and offer a variety of shades and styles to suit every individual.</p>
+        <button class="button" onclick="showMakeupSelection()">Shop Now</button>
+    </section>
+    <section id="makeup-selection" class="content" style="display: none;">
+        <h2>Our Makeup Collection</h2>
+        <div class="makeup-item">
+            <img src="make10.jpg" alt="Lipstick">
+            <div>
+                <p><strong>Velvet Matte Lipstick (Crimson)</strong> - ₱400</p>
+                <p>A long-lasting, richly pigmented lipstick for a bold and sophisticated look.</p>
+                <button class="button" onclick="addToCart(400, 'Velvet Matte Lipstick (Crimson)')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="makeup-item">
+            <img src="make11.jpg" alt="Eyeshadow Palette">
+            <div>
+                <p><strong>Eyeshadow Palette (Golden Hour)</strong> - ₱600</p>
+                <p>A versatile palette with warm, shimmery shades perfect for creating a variety of looks.</p>
+                <button class="button" onclick="addToCart(600, 'Eyeshadow Palette (Golden Hour)')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="makeup-item">
+            <img src="make12.jpg" alt="Foundation">
+            <div>
+                <p><strong>Liquid Foundation (Natural Beige)</strong> - ₱550</p>
+                <p>Lightweight and breathable foundation for a flawless, natural finish.</p>
+                <button class="button" onclick="addToCart(550, 'Liquid Foundation (Natural Beige)')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="makeup-item">
+            <img src="make13.jpg" alt="Mascara">
+            <div>
+                <p><strong>Volumizing Mascara</strong> - ₱300</p>
+                <p>Lengthens and volumizes lashes for a dramatic look.</p>
+                <button class="button" onclick="addToCart(300, 'Volumizing Mascara')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="makeup-item">
+            <img src="make14.jpg" alt="Blush">
+            <div>
+                <p><strong>Cream Blush (Peachy Keen)</strong> - ₱350</p>
+                <p>A creamy blush that adds a natural flush of color to the cheeks.</p>
+                <button class="button" onclick="addToCart(350, 'Cream Blush (Peachy Keen)')">Add to Cart</button>
+            </div>
+        </div>
+
+        <h2>Total: ₱<span id="total">0</span></h2>
+        <button class="button" onclick="showBuyerInfo()">Proceed to Checkout</button>
+        <button class="button" onclick="goBack('welcome')">Back</button>
+    </section>
+    <section id="buyer-info" class="content" style="display: none;">
+        <h2>Checkout</h2>
+        <form id="orderForm" onsubmit="submitOrder(event)">
+            <label for="name">Full Name:</label><br>
+            <input type="text" id="name" required><br>
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" required><br>
+            <label for="contact">Contact Number:</label><br>
+            <input type="tel" id="contact" required><br>
+            <button class="button" type="submit">Submit Order</button>
+        </form>
+        <div id="thankYouMessage" style="display: none; text-align: center;">
+            <h2>Thank you for your order!</h2>
+            <p id="orderSummary"></p>
+        </div>
+        <button class="button" onclick="goBack('makeup-selection')">Back</button>
+    </section>
+
+    <script>
+        let total = 0;
+        let cart = [];
+
+        function showMakeupSelection() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('makeup-selection').style.display = 'block';
+        }
+
+        function addToCart(price, itemName) {
+            total += price;
+            document.getElementById('total').textContent = total;
+            cart.push({ name: itemName, price: price });
+        }
+
+        function showBuyerInfo() {
+            document.getElementById('makeup-selection').style.display = 'none';
+            document.getElementById('buyer-info').style.display = 'block';
+        }
+
+        function goBack(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const contact = document.getElementById('contact').value;
+
+            if (!name || !address || !contact) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            let orderSummary = `<h2>Order Summary</h2><p><strong>Customer:</strong> ${name}</p><p><strong>Address:</strong> ${address}</p><p><strong>Contact:</strong> ${contact}</p><p><strong>Items:</strong></p>`;
+            cart.forEach(item => orderSummary += `<p>- ${item.name}: ₱${item.price}</p>`);
+            orderSummary += `<p><strong>Total:</strong> ₱${total}</p>`;
+
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('orderSummary').innerHTML = orderSummary;
+
+            cart = [];
+            total = 0;
+            document.getElementById('total').textContent = total;
+        }
+    </script>
+</body>
+</html>
